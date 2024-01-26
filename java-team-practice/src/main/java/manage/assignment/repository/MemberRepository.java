@@ -16,7 +16,7 @@ public class MemberRepository {
     public MemberRepository() {
 
         /* 설명. 회원가입 기능 추가 후 이제는 파일이 기존에 존재하면(처음이 아니므로) 회원 3명으로 초기화 하기를 하지 않는다. */
-        File file = new File("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat");
+        File file = new File("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
             members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
