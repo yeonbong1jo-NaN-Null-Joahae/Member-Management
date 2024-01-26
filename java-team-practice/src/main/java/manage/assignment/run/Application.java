@@ -36,7 +36,7 @@ public class Application {
                     System.out.println("프로그램을 종료합니다.");
                     return;
                 default:
-                    System.out.println("번호를 다시 제대로 입력해 주세요");
+                    System.out.println("번호를 다시 제대로 입력해 주세요!");
             }
         }
     }
