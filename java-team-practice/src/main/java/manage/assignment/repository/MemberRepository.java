@@ -1,8 +1,8 @@
 package manage.assignment.repository;
 
-import com.ohgiraffers.section04.assignment.aggregate.BloodType;
-import com.ohgiraffers.section04.assignment.aggregate.Member;
-import com.ohgiraffers.section04.assignment.stream.MyObjectOutput;
+import manage.assignment.aggregate.BloodType;
+import manage.assignment.aggregate.Member;
+import manage.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
