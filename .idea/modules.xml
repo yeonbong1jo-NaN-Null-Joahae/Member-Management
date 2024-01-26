@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-team-practice.iml" filepath="$PROJECT_DIR$/java-team-practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-team-practice.main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-team-practice.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-team-practice.test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-team-practice.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/teamJavaPractice.iml" filepath="$PROJECT_DIR$/.idea/teamJavaPractice.iml" />
+    </modules>
+  </component>
+</project>
