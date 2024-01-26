@@ -40,7 +40,7 @@ public class MemberRepository {
         try {
             oos = new ObjectOutputStream(
                     new BufferedOutputStream(
-                            new FileOutputStream("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
+                            new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat")));
 
             /* 설명. 넘어온 회원 수만큼 객체 출력하기 */
             for (Member m: members) {
@@ -66,7 +66,7 @@ public class MemberRepository {
         try {
             ois = new ObjectInputStream(
                     new BufferedInputStream(
-                            new FileInputStream("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
+                            new FileInputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat")));
 
             /* 설명. 파일로부터 모든 회원 정보를 읽어 memberList에 추가(add) */
             while (true) {
@@ -111,7 +111,7 @@ public class MemberRepository {
         try {
             moo = new MyObjectOutput(
                     new BufferedOutputStream(
-                            new FileOutputStream("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat", true)));
+                            new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat", true)));
 
             /* 설명. 파일로 객체 하나 출력하기 */
             moo.writeObject(member);
