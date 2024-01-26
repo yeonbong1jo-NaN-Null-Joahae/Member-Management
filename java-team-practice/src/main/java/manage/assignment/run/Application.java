@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (true) {
+
             System.out.println("======= 회원 관리 프로그램 =======");
             System.out.println("1. 모든 회원 정보 보기");
             System.out.println("2. 회원 찾기");
