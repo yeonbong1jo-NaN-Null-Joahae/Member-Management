@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class MemberRepository {
 
     private ArrayList<Member> memberList = new ArrayList<>();
+    private int nextNum = 1;
 
     /* 설명. 프로그램이 켜지자마자(MemberRepository()가 실행되자마자) 파일에 dummy 데이터 추가 및 입력받기 */
     public MemberRepository() {
@@ -19,9 +20,9 @@ public class MemberRepository {
         File file = new File("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
-            members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
-            members.add(new Member(2, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
-            members.add(new Member(3, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
+            members.add(new Member(nextNum++, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
+            members.add(new Member(nextNum++, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
+            members.add(new Member(nextNum++, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
             saveMembers(members);
         }
 
@@ -113,11 +114,13 @@ public class MemberRepository {
                     new BufferedOutputStream(
                             new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat", true)));
 
+            member.setMemNo(nextNum);
             /* 설명. 파일로 객체 하나 출력하기 */
             moo.writeObject(member);
 
             /* 설명. repository의 memberList에도 추가 */
             memberList.add(member);
+            nextNum++;
 
             moo.flush();
 
