@@ -145,4 +145,26 @@ public class MemberRepository {
         }
         return 0;
     }
+
+
+    /* 설명. id를 통해 멤버를 검색하는 메소드 */
+    public Member findMember(String id){
+        for(Member m: memberList) {
+            if(m.getId().equals(id)) return m;
+        }
+        return null;
+    }
+
+    /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
+    public int loginCheck(Member m, String pwd){
+       if(m == null){
+           return 1;        // ID 없음
+       } else {
+           if(m.getPwd().equals(pwd)){
+               return 2;        // 로그인 성공
+           } else{
+               return 3;        // 비번 틀림
+           }
+       }
+    }
 }

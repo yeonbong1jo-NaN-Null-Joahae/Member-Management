@@ -18,6 +18,7 @@ public class Application {
             System.out.println("2. 회원 찾기");
             System.out.println("3. 회원 가입");
             System.out.println("4. 회원 탈퇴");
+            System.out.println("6. 로그인");
             System.out.println("9. 프로그램 종료");
             System.out.print("메뉴를 선택해 주세요: ");
             int input = sc.nextInt();
@@ -31,6 +32,8 @@ public class Application {
                     break;
                 case 4: mm.deleteMember(chooseMemberNo());
                     break;
+                case 6: mm.loginCheck(getID(), getPwd());
+                    break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
                     return;
@@ -39,6 +42,8 @@ public class Application {
             }
         }
     }
+
+
 
     /* 설명. 회원 1명 조회를 위해 해당 회원 번호를 입력받아 반환하는 메소드 */
 
@@ -79,8 +84,11 @@ public class Application {
         BloodType bt = null;
         switch (bloodType) {
             case "A": bt = BloodType.A;
+            break;
             case "AB": bt = BloodType.AB;
+            break;
             case "B": bt = BloodType.B;
+            break;
             case "O": bt = BloodType.O;
         }
 
@@ -93,4 +101,21 @@ public class Application {
 
         return newInfo;
     }
-}
+
+
+    /* 설명. ID를 입력받아 반환 */
+    private static String getID() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ID를 입력하세요");
+        return sc.nextLine();
+    }
+
+    /* 설명. 비밀번호를 입력받아 반환 */
+    private static String getPwd() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("비밀번호를 입력하세요");
+        return sc.nextLine();
+    }
+
+
+    }
