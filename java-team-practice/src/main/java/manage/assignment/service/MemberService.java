@@ -30,7 +30,7 @@ public class MemberService {
     }
 
     /* 설명. 전달된 회원번호를 활용해 repository에 있는 memberList로부터 해당 회원 찾아 반환 받기 */
-    public void selectMember(int memNo) {
+    public Member selectMember(int memNo) {
         Member selectedMember = mr.selectMember(memNo);
 
         if (selectedMember == null) {
@@ -38,6 +38,8 @@ public class MemberService {
         } else {
             System.out.println("조회된 회원은: " + selectedMember);
         }
+
+        return selectedMember;
     }
 
     /* 설명. 입력받아 넘어온 회원이 가질 번호를 만들고 추가 후 repository로 전달 후 결과 화인 */
@@ -76,6 +78,15 @@ public class MemberService {
         }
     }
 
+
+    public void modifyMember(Member member) {
+        int result = mr.modifyMember(member);
+        if (result > 0) {
+            System.out.println("\n" + member.getMemNo() + "번 회원정보 수정을 성공하였습니다.");
+            return;
+        }
+        System.out.println("회원정보 수정에 실패하였습니다.");
+    }
     public void modifyMember() {
     }
 

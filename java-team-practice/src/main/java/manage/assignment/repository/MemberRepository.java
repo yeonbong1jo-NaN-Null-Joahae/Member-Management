@@ -33,6 +33,10 @@ public class MemberRepository {
 //        }
     }
 
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
+
     /* 설명. 회원이 담긴 ArrayList를 던지면 파일에 출력하는 기능 */
     private void saveMembers(ArrayList<Member> members) {
         ObjectOutputStream oos = null;
@@ -101,7 +105,7 @@ public class MemberRepository {
 
     public int selectLastMemberNo() {
         return memberList.get(memberList.size() - 1)        // 가장 최근에 가입한 회원
-                         .getMemNo();                       // 그 회원의 회원번호
+                .getMemNo();                       // 그 회원의 회원번호
     }
 
     /* 설명. 기존 회원(객체)에 이어서 파일 출력을 하고 추가한 객체의 수를 반환(feat. DML 작업의 결과는 int) */
@@ -155,19 +159,51 @@ public class MemberRepository {
             return null;
         }
 
-        /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
-        public int loginCheck(Member m, String pwd){
-            if (m == null) {
-                return 1;        // ID 없음
-            } else {
-                if (m.getPwd().equals(pwd)) {
-                    return 2;        // 로그인 성공
-                } else {
-                    return 3;        // 비번 틀림
+    /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
+    public int loginCheck(Member m, String pwd){
+       if(m == null){
+           return 1;        // ID 없음
+       } else {
+           if(m.getPwd().equals(pwd)){
+               return 2;        // 로그인 성공
+           } else{
+               return 3;        // 비번 틀림
+           }
+       }
+    }
+
+    public int modifyMember(Member member) {
+        MyObjectOutput moo = null;
+        try {
+            moo = new MyObjectOutput(
+                    new BufferedOutputStream(
+                            new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat", true)));
+
+            // 알고리즘 정리
+            // 1. memberList 에서 기존 member를 지우고
+            // 2. 지운 member 의 위치에 바뀐 정보가 들어있는 member 를 넣는다.
+            // 3. 그리고 saveMembers(memberList)
+
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemNo() == member.getMemNo()) {
+                    memberList.remove(memberList.get(i));
+                    memberList.add(i, member);
+                    saveMembers(memberList);
+                    break;
                 }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (moo != null) moo.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 
+        return 1;
+    }
     /* 설명. searchMemberByHobby 메소드 추가 */
     public ArrayList<Member> searchMemberByHobby(String hobby) {
         /* 메모
