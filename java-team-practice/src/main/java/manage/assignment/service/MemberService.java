@@ -35,6 +35,7 @@ public class MemberService {
 
         if (selectedMember == null) {
             System.out.println("그런 회원이 없네요 ㅠㅠ");
+            return null;
         } else {
             System.out.println("조회된 회원은: " + selectedMember);
         }
@@ -64,10 +65,26 @@ public class MemberService {
         System.out.println("회원 탈퇴에 실패하였습니다.");
     }
 
-    public void modifyMember() {
+    /* 설명. 로그인 결과 출력 */
+    public void loginCheck(String id, String pwd){
+        int result = mr.loginCheck(mr.findMember(id),pwd);
+        if(result == 1){
+            System.out.println("존재하지 않는 아이디입니다.");
+        } else if (result == 2) {
+            System.out.println("로그인에 성공했습니다.");
+        } else if(result == 3){
+            System.out.println("비밀번호가 틀렸습니다.");
+        }
     }
 
-    public void loginCheck() {
+
+    public void modifyMember(Member member) {
+        int result = mr.modifyMember(member);
+        if (result > 0) {
+            System.out.println("\n" + member.getMemNo() + "번 회원정보 수정을 성공하였습니다.");
+            return;
+        }
+        System.out.println("회원정보 수정에 실패하였습니다.");
     }
 
     /* 설명. searchMemberByHobby 메소드 추가 */
@@ -90,5 +107,14 @@ public class MemberService {
     }
 
     public void resetPassword() {
+    }
+
+    public void findID(Member member){
+        String iD = mr.findID(member);
+        if(iD != null){
+            System.out.println(mr.findID(member) + " 찾으시는 아이디 입니다.");
+            return;
+        }
+        System.out.println("찾으시는 아이디가 없습니다.");
     }
 }

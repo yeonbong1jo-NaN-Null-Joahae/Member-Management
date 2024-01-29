@@ -6,6 +6,7 @@ import manage.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공/실패 결과를 반환하는 클래스 */
 public class MemberRepository {
@@ -225,5 +226,16 @@ public class MemberRepository {
             }
         }
         return sharedHobbyMembers;                      // 입력된 값과 일치하는 취미를 가진 멤버 객체 리스트 반환
+    }
+
+    /* 필기. 아이디 검색 추가 */
+    public String findID(Member member){
+        for(Member m: memberList){
+            if(m.getAge() == member.getAge()&& m.getBloodType() == member.getBloodType() && Arrays.equals(m.getHobbies(), member.getHobbies())){
+//                 && m.getHobbies().equals(member.getHobbies())
+                return m.getId();
+            }
+        }
+        return null;
     }
 }

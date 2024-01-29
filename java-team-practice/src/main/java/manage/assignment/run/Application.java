@@ -44,7 +44,7 @@ public class Application {
                     break;
                 case 7: mm.searchMemberByHobby(chooseHobby());
                     break;
-                case 8: mm.resetPassword();
+                case 8: mm.findID(findIdOrPw());
                     break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
