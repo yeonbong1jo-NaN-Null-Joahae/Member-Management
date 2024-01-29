@@ -49,9 +49,7 @@ public class Member implements Serializable {       // 객체 입출력을 위�
         this.memNo = memNo;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) { this.id = id; }
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
@@ -105,7 +103,4 @@ public class Member implements Serializable {       // 객체 입출력을 위�
                 '}';
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }
