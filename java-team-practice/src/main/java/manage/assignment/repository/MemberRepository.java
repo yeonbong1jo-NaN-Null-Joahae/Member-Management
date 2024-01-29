@@ -6,6 +6,7 @@ import manage.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공/실패 결과를 반환하는 클래스 */
 public class MemberRepository {
@@ -21,9 +22,9 @@ public class MemberRepository {
         File file = new File("java-team-practice/src/main/java/mane/assignment/db/memberDB.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
-            members.add(new Member(nextNum++, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
-            members.add(new Member(nextNum++, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
-            members.add(new Member(nextNum++, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
+            members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
+            members.add(new Member(2, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
+            members.add(new Member(3, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
             saveMembers(members);
         }
 
@@ -211,6 +212,7 @@ public class MemberRepository {
 
         return 1;
     }
+
     /* 설명. searchMemberByHobby 메소드 추가 */
     public ArrayList<Member> searchMemberByHobby(String hobby) {
         /* 메모
@@ -231,6 +233,17 @@ public class MemberRepository {
             }
         }
         return sharedHobbyMembers;                      // 입력된 값과 일치하는 취미를 가진 멤버 객체 리스트 반환
+    }
+
+    /* 필기. 아이디 검색 추가 */
+    public String findID(Member member){
+        for(Member m: memberList){
+            if(m.getAge() == member.getAge()&& m.getBloodType() == member.getBloodType() && Arrays.equals(m.getHobbies(), member.getHobbies())){
+//                 && m.getHobbies().equals(member.getHobbies())
+                return m.getId();
+            }
+        }
+        return null;
     }
 }
 
