@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="java-team-practice:test" external.linked.project.path="$MODULE_DIR$/../../java-team-practice" external.root.project.path="$MODULE_DIR$/../../java-team-practice" external.system.id="GRADLE" external.system.module.group="org.example" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <output-test url="file://$MODULE_DIR$/../../java-team-practice/out/test/classes" />
+    <output-test url="file://$MODULE_DIR$/../../java-team-practice/build/classes/java/test" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../java-team-practice/src/test" />
+    <content url="file://$MODULE_DIR$/../../java-team-practice/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../java-team-practice/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../java-team-practice/src/test/resources" type="java-test-resource" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="java-team-practice.main" />
