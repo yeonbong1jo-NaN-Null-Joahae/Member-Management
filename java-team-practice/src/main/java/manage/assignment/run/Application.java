@@ -248,7 +248,7 @@ public class Application {
             }
 
             System.out.print("혈액형을 입력하세요 : ");
-            String bloodtype = sc.nextLine();
+            BloodType bloodtype = BloodType.valueOf(sc.nextLine().toUpperCase());
 
             findId = new Member(age, hobbies, bloodtype);
             return findId;
