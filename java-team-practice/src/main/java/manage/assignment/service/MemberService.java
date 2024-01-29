@@ -90,4 +90,17 @@ public class MemberService {
 
     public void resetPassword() {
     }
+
+    /* 설명. 로그인 결과 출력 */
+    public void loginCheck(String id, String pwd){
+        int result = mr.loginCheck(mr.findMember(id),pwd);
+        if(result == 1){
+            System.out.println("존재하지 않는 아이디입니다.");
+        } else if (result == 2) {
+            System.out.println("로그인에 성공했습니다.");
+        } else if(result == 3){
+            System.out.println("비밀번호가 틀렸습니다.");
+        }
+    }
+
 }
