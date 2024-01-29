@@ -203,6 +203,7 @@ public class MemberRepository {
         }
 
         return 1;
+    }
     /* 설명. searchMemberByHobby 메소드 추가 */
     public ArrayList<Member> searchMemberByHobby(String hobby) {
         /* 메모
