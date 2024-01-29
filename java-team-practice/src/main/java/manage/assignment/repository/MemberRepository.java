@@ -17,7 +17,7 @@ public class MemberRepository {
     public MemberRepository() {
 
         /* 설명. 회원가입 기능 추가 후 이제는 파일이 기존에 존재하면(처음이 아니므로) 회원 3명으로 초기화 하기를 하지 않는다. */
-        File file = new File("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat.dat");
+        File file = new File("java-team-practice/src/main/java/mane/assignment/db/memberDB.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
             members.add(new Member(nextNum++, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
@@ -147,5 +147,27 @@ public class MemberRepository {
             }
         }
         return 0;
+    }
+
+
+    /* 설명. id를 통해 멤버를 검색하는 메소드 */
+    public Member findMember(String id){
+        for(Member m: memberList) {
+            if(m.getId().equals(id)) return m;
+        }
+        return null;
+    }
+
+    /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
+    public int loginCheck(Member m, String pwd){
+       if(m == null){
+           return 1;        // ID 없음
+       } else {
+           if(m.getPwd().equals(pwd)){
+               return 2;        // 로그인 성공
+           } else{
+               return 3;        // 비번 틀림
+           }
+       }
     }
 }
