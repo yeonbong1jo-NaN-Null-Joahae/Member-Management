@@ -62,4 +62,32 @@ public class MemberService {
 
         System.out.println("회원 탈퇴에 실패하였습니다.");
     }
+
+    public void modifyMember() {
+    }
+
+    public void loginCheck() {
+    }
+
+    /* 설명. searchMemberByHobby 메소드 추가 */
+    public void searchMemberByHobby(String hobby) {
+        /* 메모
+            1. Application의 chooseHobby 메소드에서 hobby를 전달 받음
+            2. Repository에서 취미가 일치하는 멤버의 객체를 받아와 ArrayList에 저장
+            3. 해당 멤버 배열을 출력
+         */
+
+        ArrayList<Member> sharedHobbyMembers = mr.searchMemberByHobby(hobby);
+
+        if(!sharedHobbyMembers.isEmpty()){
+            System.out.println("============ " + hobby + " 취미를 가진 멤버 목록 ============");
+            for (Member m : sharedHobbyMembers){
+                System.out.println(m);
+            }
+        } else
+            System.out.println("해당 취미를 가진 회원이 없네요~");
+    }
+
+    public void resetPassword() {
+    }
 }
