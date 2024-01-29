@@ -84,8 +84,11 @@ public class Application {
         BloodType bt = null;
         switch (bloodType) {
             case "A": bt = BloodType.A;
+            break;
             case "AB": bt = BloodType.AB;
+            break;
             case "B": bt = BloodType.B;
+            break;
             case "O": bt = BloodType.O;
         }
 
