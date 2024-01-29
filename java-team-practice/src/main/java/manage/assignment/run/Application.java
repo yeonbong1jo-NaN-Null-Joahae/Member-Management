@@ -40,7 +40,7 @@ public class Application {
                     break;
                 case 5: mm.modifyMember(modifyInfo(chooseMemberNo()));
                     break;
-                case 6: mm.loginCheck();
+                case 6: mm.loginCheck(getID(), getPwd());
                     break;
                 case 7: mm.searchMemberByHobby(chooseHobby());
                     break;
@@ -248,7 +248,7 @@ public class Application {
             }
 
             System.out.print("혈액형을 입력하세요 : ");
-            String bloodtype = sc.nextLine();
+            BloodType bloodtype = BloodType.valueOf(sc.nextLine().toUpperCase());
 
             findId = new Member(age, hobbies, bloodtype);
             return findId;
@@ -271,5 +271,5 @@ public class Application {
         }
     }
 
-    }
+
 }
