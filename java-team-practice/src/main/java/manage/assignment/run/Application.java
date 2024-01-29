@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 /* 설명. 프로그램 실행 및 메뉴 출력과 사용자의 입력을 받을 View에 해당하는 클래스 */
 public class Application {
 
+
     private static final MemberService mm = new MemberService();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class Application {
             System.out.println("2. 회원 찾기");
             System.out.println("3. 회원 가입");
             System.out.println("4. 회원 탈퇴");
-            System.out.println("5. 회원 수정");
+            System.out.println("5. 회원정보 수정");
             System.out.println("6. 로그인 여부 확인");
             System.out.println("7. 취미별 회원 조회");
             System.out.println("8. 아이디찾기/비밀번호 수정");
@@ -38,9 +39,9 @@ public class Application {
                     break;
                 case 4: mm.deleteMember(chooseMemberNo());
                     break;
-                case 5: mm.modifyMember();
+                case 5: mm.modifyMember(modifyInfo(chooseMemberNo()));
                     break;
-                case 6: mm.loginCheck();
+                case 6: mm.loginCheck(getID(), getPwd());
                     break;
                 case 7: mm.searchMemberByHobby(chooseHobby());
                     break;
@@ -50,7 +51,7 @@ public class Application {
                     System.out.println("프로그램을 종료합니다.");
                     return;
                 default:
-                    System.out.println("번호를 다시 제대로 입력해 주세요");
+                    System.out.println("번호를 다시 제대로 입력해 주세요!");
             }
         }
     }
@@ -272,4 +273,5 @@ public class Application {
         }
     }
 
-    }
+
+}

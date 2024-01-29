@@ -90,8 +90,7 @@ public class MemberService {
     public void modifyMember() {
     }
 
-    public void loginCheck() {
-    }
+
 
     /* 설명. searchMemberByHobby 메소드 추가 */
     public void searchMemberByHobby(String hobby) {
