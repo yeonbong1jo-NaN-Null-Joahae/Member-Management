@@ -22,6 +22,9 @@ public class Application {
             System.out.println("3. 회원 가입");
             System.out.println("4. 회원 탈퇴");
             System.out.println("5. 회원정보 수정");
+            System.out.println("6. 로그인 여부 확인");
+            System.out.println("7. 취미별 회원 조회");
+            System.out.println("8. 아이디찾기/비밀번호 수정");
             System.out.println("9. 프로그램 종료");
             System.out.print("메뉴를 선택해 주세요: ");
             int input = sc.nextInt();
@@ -37,6 +40,12 @@ public class Application {
                     break;
                 case 5: mm.modifyMember(modifyInfo(chooseMemberNo()));
                     break;
+                case 6: mm.loginCheck();
+                    break;
+                case 7: mm.searchMemberByHobby(chooseHobby());
+                    break;
+                case 8: mm.resetPassword();
+                    break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
                     return;
@@ -46,6 +55,14 @@ public class Application {
         }
     }
 
+    /* 설명. 같은 취미를 가진 회원 조회를 위해 검색할 취미를 입력받아 반환하는 메소드 */
+    private static String chooseHobby() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("조회할 취미를 입력하세요: ");
+
+        return sc.nextLine().trim();
+    }
+
     /* 설명. 회원 1명 조회를 위해 해당 회원 번호를 입력받아 반환하는 메소드 */
 
     private static int chooseMemberNo() {
@@ -53,7 +70,6 @@ public class Application {
         System.out.print("회원번호를 입력하세요: ");
         return sc.nextInt();
     }
-
 
     /* 설명. 사용자로부터 회원번호를 제외한 정보를 입력받아(회원가입용 정보) Member 타입으로 반환하는 메소드(parsing 및 가공처리) */
     private static Member signUp() {
@@ -95,18 +111,11 @@ public class Application {
          *  회원으로부터 회원가입을 위한 정보를 입력받아 Member 타입 객체 하나로 가공 처리할 때 방법이 두 가지가 있다.
          *  1. 생성자 방식(장점: 한줄 코딩 가능, 단점: 따로 생성자 추가)
          *  2. setter 방식(장점: 초기화할 개수 수정 용이, 단점: 코딩 줄 수 늘어날 수 있음)
-         * */
+        * */
         newInfo.setBloodType(bt);
 
         return newInfo;
     }
-
-
-
-
-
-
-
 
     /* 설명.
      *  회원번호 입력받아 회원정보 수정하는 기능
@@ -200,5 +209,67 @@ public class Application {
         // 4. newInfo 를 반환하여 서비스 단으로 넘긴다.
         // =================================================
         return newInfo;
+    }
+
+
+    /* 설명. ID를 입력받아 반환 */
+    private static String getID() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ID를 입력하세요");
+        return sc.nextLine();
+    }
+
+    /* 설명. 비밀번호를 입력받아 반환 */
+    private static String getPwd() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("비밀번호를 입력하세요");
+        return sc.nextLine();
+    }
+
+    private static Member findIdOrPw() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("찾으려는 내용이 무엇인가요?");
+        System.out.print("1. 아이디        2. 비밀번호");
+        int input1 = sc.nextInt();
+
+        if (input1 == 1){
+            Member findId = null;
+            System.out.print("나이를 입력하세요 : ");
+            int age = sc.nextInt();
+
+            System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
+            int length = sc.nextInt();
+            sc.nextLine();
+            String[] hobbies = new String[length];
+            for (int i = 0; i < hobbies.length; i++) {
+                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
+                String input3 = sc.nextLine();
+                hobbies[i] = input3;
+            }
+
+            System.out.print("혈액형을 입력하세요 : ");
+            String bloodtype = sc.nextLine();
+
+            findId = new Member(age, hobbies, bloodtype);
+            return findId;
+        } else {
+            Member findPw = null;
+            System.out.print("아이디를 입력하세요 : ");
+            String id = sc.nextLine();
+
+            System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
+            int length = sc.nextInt();
+            sc.nextLine();
+            String[] hobbies = new String[length];
+            for (int i = 0; i < hobbies.length; i++) {
+                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
+                String input4 = sc.nextLine();
+                hobbies[i] = input4;
+            }
+            findPw = new Member(id, hobbies);
+            return findPw;
+        }
+    }
+
     }
 }
