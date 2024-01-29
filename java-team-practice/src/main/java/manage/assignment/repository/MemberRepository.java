@@ -16,7 +16,7 @@ public class MemberRepository {
     public MemberRepository() {
 
         /* 설명. 회원가입 기능 추가 후 이제는 파일이 기존에 존재하면(처음이 아니므로) 회원 3명으로 초기화 하기를 하지 않는다. */
-        File file = new File("java-team-practice/src/main/java/mane/assignment/db/memberDB.dat");
+        File file = new File("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
             members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
@@ -203,5 +203,27 @@ public class MemberRepository {
         }
 
         return 1;
+    }
+
+    /* 설명. searchMemberByHobby 메소드 추가 */
+    public ArrayList<Member> searchMemberByHobby(String hobby) {
+        /* 메모
+            1. MemberService에서 hobby를 매개변수로 받아옴
+            2. 취미가 동일한 멤버 객체를 담을 ArrayList를 생성
+            3. forEach문을 사용하여 Member 객체의 hobby 필드(String 배열)에서 전달받은 매개변수 hobby와 일치하는 값이 있다면
+               해당 Member 객체를 ArrayList에 저장
+            4. ArrayList를 MemberService로 반환
+         */
+
+        ArrayList<Member> sharedHobbyMembers = new ArrayList<>();
+
+        for(Member m : memberList){                     // memberList에 저장된 값 순차 탐색
+            for(String s : m.getHobbies()){             // MemberList에 저장된 member 객체의 취미 배열 순차 탐색
+                if(s.equals(hobby)){       // 사용자가 입력한 취미와 배열의 값이 일치한다면
+                    sharedHobbyMembers.add(m);          // 해당 멤버 객체를 sharedHobbyMembers에 저장
+                }
+            }
+        }
+        return sharedHobbyMembers;                      // 입력된 값과 일치하는 취미를 가진 멤버 객체 리스트 반환
     }
 }

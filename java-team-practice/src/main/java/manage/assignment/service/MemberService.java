@@ -30,7 +30,7 @@ public class MemberService {
     }
 
     /* 설명. 전달된 회원번호를 활용해 repository에 있는 memberList로부터 해당 회원 찾아 반환 받기 */
-    public Member selectMember(int memNo) {
+    public void selectMember(int memNo) {
         Member selectedMember = mr.selectMember(memNo);
 
         if (selectedMember == null) {
@@ -38,8 +38,6 @@ public class MemberService {
         } else {
             System.out.println("조회된 회원은: " + selectedMember);
         }
-
-        return selectedMember;
     }
 
     /* 설명. 입력받아 넘어온 회원이 가질 번호를 만들고 추가 후 repository로 전달 후 결과 화인 */
@@ -65,26 +63,31 @@ public class MemberService {
         System.out.println("회원 탈퇴에 실패하였습니다.");
     }
 
-
-    /* 설명. 로그인 결과 출력 */
-    public void loginCheck(String id, String pwd){
-        int result = mr.loginCheck(mr.findMember(id),pwd);
-        if(result == 1){
-            System.out.println("존재하지 않는 아이디입니다.");
-        } else if (result == 2) {
-            System.out.println("로그인에 성공했습니다.");
-        } else if(result == 3){
-            System.out.println("비밀번호가 틀렸습니다.");
-        }
+    public void modifyMember() {
     }
 
+    public void loginCheck() {
+    }
 
-    public void modifyMember(Member member) {
-        int result = mr.modifyMember(member);
-        if (result > 0) {
-            System.out.println("\n" + member.getMemNo() + "번 회원정보 수정을 성공하였습니다.");
-            return;
-        }
-        System.out.println("회원정보 수정에 실패하였습니다.");
+    /* 설명. searchMemberByHobby 메소드 추가 */
+    public void searchMemberByHobby(String hobby) {
+        /* 메모
+            1. Application의 chooseHobby 메소드에서 hobby를 전달 받음
+            2. Repository에서 취미가 일치하는 멤버의 객체를 받아와 ArrayList에 저장
+            3. 해당 멤버 배열을 출력
+         */
+
+        ArrayList<Member> sharedHobbyMembers = mr.searchMemberByHobby(hobby);
+
+        if(!sharedHobbyMembers.isEmpty()){
+            System.out.println("============ " + hobby + " 취미를 가진 멤버 목록 ============");
+            for (Member m : sharedHobbyMembers){
+                System.out.println(m);
+            }
+        } else
+            System.out.println("해당 취미를 가진 회원이 없네요~");
+    }
+
+    public void resetPassword() {
     }
 }

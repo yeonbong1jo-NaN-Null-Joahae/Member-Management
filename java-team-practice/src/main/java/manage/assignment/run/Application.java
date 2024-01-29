@@ -22,7 +22,9 @@ public class Application {
             System.out.println("3. 회원 가입");
             System.out.println("4. 회원 탈퇴");
             System.out.println("5. 회원정보 수정");
-            System.out.println("6. 로그인");
+            System.out.println("6. 로그인 여부 확인");
+            System.out.println("7. 취미별 회원 조회");
+            System.out.println("8. 아이디찾기/비밀번호 수정");
             System.out.println("9. 프로그램 종료");
             System.out.print("메뉴를 선택해 주세요: ");
             int input = sc.nextInt();
@@ -40,6 +42,10 @@ public class Application {
                     break;
                 case 6: mm.loginCheck(getID(), getPwd());
                     break;
+                case 7: mm.searchMemberByHobby(chooseHobby());
+                    break;
+                case 8: mm.resetPassword();
+                    break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
                     return;
@@ -47,6 +53,14 @@ public class Application {
                     System.out.println("번호를 다시 제대로 입력해 주세요");
             }
         }
+    }
+
+    /* 설명. 같은 취미를 가진 회원 조회를 위해 검색할 취미를 입력받아 반환하는 메소드 */
+    private static String chooseHobby() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("조회할 취미를 입력하세요: ");
+
+        return sc.nextLine().trim();
     }
 
     /* 설명. 회원 1명 조회를 위해 해당 회원 번호를 입력받아 반환하는 메소드 */
