@@ -2,9 +2,12 @@ package manage.assignment.run;
 
 import manage.assignment.aggregate.BloodType;
 import manage.assignment.aggregate.Member;
+import manage.assignment.repository.MemberRepository;
 import manage.assignment.service.MemberService;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /* 설명. 프로그램 실행 및 메뉴 출력과 사용자의 입력을 받을 View에 해당하는 클래스 */
 public class Application {
@@ -18,6 +21,7 @@ public class Application {
             System.out.println("2. 회원 찾기");
             System.out.println("3. 회원 가입");
             System.out.println("4. 회원 탈퇴");
+            System.out.println("5. 회원정보 수정");
             System.out.println("9. 프로그램 종료");
             System.out.print("메뉴를 선택해 주세요: ");
             int input = sc.nextInt();
@@ -30,6 +34,8 @@ public class Application {
                 case 3: mm.registMember(signUp());
                     break;
                 case 4: mm.deleteMember(chooseMemberNo());
+                    break;
+                case 5: mm.modifyMember(modifyInfo(chooseMemberNo()));
                     break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
@@ -78,9 +84,9 @@ public class Application {
         String bloodType = sc.nextLine().toUpperCase();
         BloodType bt = null;
         switch (bloodType) {
-            case "A": bt = BloodType.A;
-            case "AB": bt = BloodType.AB;
-            case "B": bt = BloodType.B;
+            case "A": bt = BloodType.A; break;
+            case "AB": bt = BloodType.AB; break;
+            case "B": bt = BloodType.B; break;
             case "O": bt = BloodType.O;
         }
 
@@ -88,9 +94,110 @@ public class Application {
          *  회원으로부터 회원가입을 위한 정보를 입력받아 Member 타입 객체 하나로 가공 처리할 때 방법이 두 가지가 있다.
          *  1. 생성자 방식(장점: 한줄 코딩 가능, 단점: 따로 생성자 추가)
          *  2. setter 방식(장점: 초기화할 개수 수정 용이, 단점: 코딩 줄 수 늘어날 수 있음)
-        * */
+         * */
         newInfo.setBloodType(bt);
 
+        return newInfo;
+    }
+
+
+
+
+
+
+
+
+    /* 설명.
+     *  회원번호 입력받아 회원정보 수정하는 기능
+    * */
+    private static Member modifyInfo(int memNo) {
+
+        /* 설명. 상세 알고리즘
+         *  1. 사용자가 입력한 회원번호에 해당하는 회원의 정보를 가져온다
+         *  2. 사용자에게 5가지의 필드 중 어떤 것을 바꾸고 싶은지 물어보고 스페이스로 구분하여 입력하도록 한다 (예시: 2 4 5)
+         *  3. 입력하면 newInfo 에서 해당 필드를 setter 를 이용하여 수정한다
+         *  4. newInfo 를 반환하여 서비스 단으로 넘긴다.
+        * */
+
+        // =================================================
+        // 1. 사용자가 입력한 회원번호에 해당하는 회원의 정보를 가져온다
+        // =================================================
+        Member newInfo = mm.selectMember(memNo);
+
+        // =================================================
+        // 2. 사용자에게 5가지의 필드 중 어떤 것을 바꾸고 싶은지 물어보고
+        //    스페이스로 구분하여 입력하도록 한다 (예시: 2 4 5)
+        // =================================================
+        System.out.println("\n=============== 회원정보 수정 ===============");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n수정하고 싶은 정보를 모두 골라 그 번호를 입력해주세요.");
+        System.out.println("1. 아이디 / 2. 패스워드 / 3. 나이 / 4. 취미 / 5. 혈액형");
+        System.out.println("예시) 패스워드, 취미, 혈액형 수정할 경우: 2 4 5");
+
+        // =====
+        ArrayList<Integer> modiFyInfoList = new ArrayList<>();
+        String line = sc.nextLine();
+        StringTokenizer token = new StringTokenizer(line, " ");
+
+        while (token.hasMoreTokens()) {
+            modiFyInfoList.add(Integer.parseInt(token.nextToken()));
+        }
+
+        System.out.println(modiFyInfoList);
+
+
+        // =================================================
+        // 3. 입력하면 newInfo 에서 해당 필드를 setter 를 이용하여 수정한다
+        // =================================================
+        for (int i = 0; i < modiFyInfoList.size(); i++) {
+            switch (modiFyInfoList.get(i)) {
+                case 1:
+                    System.out.print("수정할 아이디를 입력하세요: ");
+                    String id = sc.nextLine();
+                    newInfo.setId(id);
+                    break;
+                case 2:
+                    System.out.print("수정할 패스워드를 입력하세요: ");
+                    String pwd = sc.nextLine();
+                    newInfo.setPwd(pwd);
+                    break;
+                case 3:
+                    System.out.print("수정할 나이를 입력하세요: ");
+                    int age = sc.nextInt();
+                    newInfo.setAge(age);
+                    break;
+                case 4:
+                    System.out.print("수정할 취미의 개수를 입력하세요: ");
+                    int hobbyLength = sc.nextInt();
+                    sc.nextLine();
+                    String[] hobbies = new String[hobbyLength];
+                    for (int j = 0; j < hobbies.length; j++) {
+                        System.out.print((j + 1) + "번째 취미를 입력하세요: ");
+                        String input = sc.nextLine();
+                        hobbies[j] = input;
+                    }
+                    newInfo.setHobbies(hobbies);
+                    break;
+                case 5:
+                    System.out.print("수정할 혈액형을 입력하세요(A, AB, B, O): ");
+                    String bloodType = sc.nextLine().toUpperCase();
+                    BloodType bt = null;
+                    switch (bloodType) {
+                        case "A": bt = BloodType.A; break;
+                        case "AB": bt = BloodType.AB; break;
+                        case "B": bt = BloodType.B; break;
+                        case "O": bt = BloodType.O;
+                    }
+                    newInfo.setBloodType(bt);
+                    break;
+            }
+//
+        }
+
+        // =================================================
+        // 4. newInfo 를 반환하여 서비스 단으로 넘긴다.
+        // =================================================
         return newInfo;
     }
 }
