@@ -77,4 +77,8 @@ public class                Member implements Serializable {       // 객체 입
                 ", bloodType=" + bloodType +
                 '}';
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

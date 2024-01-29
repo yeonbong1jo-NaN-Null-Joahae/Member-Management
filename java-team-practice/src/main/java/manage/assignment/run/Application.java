@@ -9,6 +9,7 @@ import java.util.Scanner;
 /* 설명. 프로그램 실행 및 메뉴 출력과 사용자의 입력을 받을 View에 해당하는 클래스 */
 public class Application {
 
+
     private static final MemberService mm = new MemberService();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -38,7 +39,7 @@ public class Application {
                     System.out.println("프로그램을 종료합니다.");
                     return;
                 default:
-                    System.out.println("번호를 다시 제대로 입력해 주세요");
+                    System.out.println("번호를 다시 제대로 입력해 주세요!");
             }
         }
     }
