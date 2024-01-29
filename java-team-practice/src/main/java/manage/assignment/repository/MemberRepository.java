@@ -11,13 +11,15 @@ import java.util.Arrays;
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공/실패 결과를 반환하는 클래스 */
 public class MemberRepository {
 
+    /* 설명. nextNum을 초기값 1로 필드 선언 및 Member리스트의 memNo에 nextNum++ 추가 */
     private ArrayList<Member> memberList = new ArrayList<>();
+    private int nextNum = 1;
 
     /* 설명. 프로그램이 켜지자마자(MemberRepository()가 실행되자마자) 파일에 dummy 데이터 추가 및 입력받기 */
     public MemberRepository() {
 
         /* 설명. 회원가입 기능 추가 후 이제는 파일이 기존에 존재하면(처음이 아니므로) 회원 3명으로 초기화 하기를 하지 않는다. */
-        File file = new File("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat.dat");
+        File file = new File("java-team-practice/src/main/java/mane/assignment/db/memberDB.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
             members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
@@ -118,11 +120,16 @@ public class MemberRepository {
                     new BufferedOutputStream(
                             new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat", true)));
 
+            /* 설명. setMemNo(memNo)에 nextNum 대입 */
+            member.setMemNo(nextNum);
             /* 설명. 파일로 객체 하나 출력하기 */
             moo.writeObject(member);
 
             /* 설명. repository의 memberList에도 추가 */
+
+            /* 설명. memberList의 nextNum을(memNo) 1씩 추가해줌 */
             memberList.add(member);
+            nextNum++;
 
             moo.flush();
 

@@ -3,7 +3,10 @@
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../java-team-practice/build/classes/java/test" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../java-team-practice/src/test" />
+    <content url="file://$MODULE_DIR$/../../java-team-practice/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../java-team-practice/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../java-team-practice/src/test/resources" type="java-test-resource" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="java-team-practice.main" />
