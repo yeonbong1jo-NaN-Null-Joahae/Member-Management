@@ -64,6 +64,7 @@ public class MemberService {
     }
 
 
+    /* 설명. 로그인 결과 출력 */
     public void loginCheck(String id, String pwd){
         int result = mr.loginCheck(mr.findMember(id),pwd);
         if(result == 1){
