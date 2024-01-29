@@ -6,6 +6,7 @@ import manage.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공/실패 결과를 반환하는 클래스 */
 public class MemberRepository {
@@ -43,7 +44,7 @@ public class MemberRepository {
                             new FileOutputStream("java-team-practice/src/main/java/manage/assignment/db/memberDB.dat")));
 
             /* 설명. 넘어온 회원 수만큼 객체 출력하기 */
-            for (Member m: members) {
+            for (Member m : members) {
                 oos.writeObject(m);
             }
 
@@ -53,7 +54,7 @@ public class MemberRepository {
             throw new RuntimeException(e);
         } finally {
             try {
-                if(oos != null) oos.close();
+                if (oos != null) oos.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -93,15 +94,15 @@ public class MemberRepository {
     }
 
     public Member selectMember(int memNo) {
-        for(Member m: memberList) {
-            if(m.getMemNo() == memNo) return m;
+        for (Member m : memberList) {
+            if (m.getMemNo() == memNo) return m;
         }
         return null;
     }
 
     public int selectLastMemberNo() {
         return memberList.get(memberList.size() - 1)        // 가장 최근에 가입한 회원
-                         .getMemNo();                       // 그 회원의 회원번호
+                .getMemNo();                       // 그 회원의 회원번호
     }
 
     /* 설명. 기존 회원(객체)에 이어서 파일 출력을 하고 추가한 객체의 수를 반환(feat. DML 작업의 결과는 int) */
@@ -135,7 +136,7 @@ public class MemberRepository {
 
     public int deleteMember(int memNo) {
         for (int i = 0; i < memberList.size(); i++) {
-            if(memberList.get(i).getMemNo() == memNo) {     // 지우려는 회원과 같은 회원 번호인 index 찾기
+            if (memberList.get(i).getMemNo() == memNo) {     // 지우려는 회원과 같은 회원 번호인 index 찾기
 
                 /* 설명. 프로그램 상에서 회원을 관리하는 memberList 뿐 아니라 DB(회원 파일)도 같이 적용되게 함 */
                 memberList.remove(i);
@@ -148,23 +149,50 @@ public class MemberRepository {
 
 
     /* 설명. id를 통해 멤버를 검색하는 메소드 */
-    public Member findMember(String id){
-        for(Member m: memberList) {
-            if(m.getId().equals(id)) return m;
+    public Member findMember(String id) {
+        for (Member m : memberList) {
+            if (m.getId().equals(id)) return m;
         }
         return null;
     }
 
     /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
-    public int loginCheck(Member m, String pwd){
-       if(m == null){
-           return 1;        // ID 없음
-       } else {
-           if(m.getPwd().equals(pwd)){
-               return 2;        // 로그인 성공
-           } else{
-               return 3;        // 비번 틀림
-           }
-       }
+    public int loginCheck(Member m, String pwd) {
+        if (m == null) {
+            return 1;        // ID 없음
+        } else {
+            if (m.getPwd().equals(pwd)) {
+                return 2;        // 로그인 성공
+            } else {
+                return 3;        // 비번 틀림
+            }
+        }
+    }
+
+    public Member findMember(Member member) {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < memberList.size(); i++) {
+            if (memberList.get(i).getId().equals(member.getId())){
+                if (memberList.get(i).getHobbies().equals(member.getHobbies())){
+//                    System.out.println(member.getId() + "님은 비밀번호를 변경하셔야 합니다.");
+//                    System.out.print("변경할 비밀번호를 입력하세요 : ");
+//                    String pwd = sc.nextLine();
+//                    memberList.get(i).setPwd(pwd);
+                    return memberList.get(i);
+                } else {
+                    System.out.println("취미를 잘못 입력하셨습니다.");
+                }
+                System.out.println("아이디를 잘못 입력하셨습니다.");
+            }
+            saveMembers(memberList);
+            return 2;
+        }
+          return 0;
+    }
+
+    public void changePWD(Member member, String pwd){
+        member.setPwd(pwd);
     }
 }
+
+

@@ -4,6 +4,7 @@ import manage.assignment.aggregate.Member;
 import manage.assignment.repository.MemberRepository;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /* 설명. 트랜잭션 성공/실패 여부 확인 및 회원 관련 비즈니스 로직 처리하는 클래스 */
 public class MemberService {
@@ -76,4 +77,11 @@ public class MemberService {
         }
     }
 
-}
+
+    public void find(Member member) {
+        Member result;
+        if (result == 1){
+        } else if(result == 2)
+            System.out.println("회원정보를 찾을 수 없습니다.");
+        }
+    }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /* 설명. 객체 입출력의 대상이 되는 클래스이자 엔티티 개념의 클래스(DB에 저장된 데이터를 담거나 넣을 데이터를 담을 객체) */
-public class                Member implements Serializable {       // 객체 입출력을 위해 Serializable 인터페이스 구현
+public class Member implements Serializable {       // 객체 입출력을 위해 Serializable 인터페이스 구현
 
     private int memNo;              // 회원번호
     private String id;              // 회원아이디
@@ -34,15 +34,21 @@ public class                Member implements Serializable {       // 객체 입
         this.bloodType = bloodType;
     }
 
-    public Member(String id, String[] hobbies) {
-        this.id = id;
-        this.hobbies = hobbies;
-    }
-
     public Member(int age, String[] hobbies, BloodType bloodType) {
         this.age = age;
         this.hobbies = hobbies;
         this.bloodType = bloodType;
+    }
+
+    public Member(int age, String[] hobbies, String bloodtype) {
+        this.age = age;
+        this.hobbies = hobbies;
+        this.bloodType = BloodType.valueOf(bloodtype);
+    }
+
+    public Member(String id, String[] hobbies) {
+        this.id = id;
+        this.hobbies = hobbies;
     }
 
     public void setMemNo(int memNo) {
@@ -63,6 +69,10 @@ public class                Member implements Serializable {       // 객체 입
 
     public String getPwd() {
         return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     public int getAge() {
