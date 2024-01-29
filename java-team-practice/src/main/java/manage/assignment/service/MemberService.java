@@ -86,6 +86,7 @@ public class MemberService {
             return;
         }
         System.out.println("회원정보 수정에 실패하였습니다.");
+    }    
     public void modifyMember() {
     }
 
