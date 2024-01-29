@@ -54,6 +54,7 @@ public class Application {
         return sc.nextInt();
     }
 
+
     /* 설명. 사용자로부터 회원번호를 제외한 정보를 입력받아(회원가입용 정보) Member 타입으로 반환하는 메소드(parsing 및 가공처리) */
     private static Member signUp() {
         Member newInfo = null;
