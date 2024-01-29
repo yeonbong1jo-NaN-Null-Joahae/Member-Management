@@ -117,5 +117,49 @@ public class Application {
         return sc.nextLine();
     }
 
+    private static Member findIdOrPw() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("찾으려는 내용이 무엇인가요?");
+        System.out.print("1. 아이디        2. 비밀번호");
+        int input1 = sc.nextInt();
+
+        if (input1 == 1){
+            Member findId = null;
+            System.out.print("나이를 입력하세요 : ");
+            int age = sc.nextInt();
+
+            System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
+            int length = sc.nextInt();
+            sc.nextLine();
+            String[] hobbies = new String[length];
+            for (int i = 0; i < hobbies.length; i++) {
+                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
+                String input3 = sc.nextLine();
+                hobbies[i] = input3;
+            }
+
+            System.out.print("혈액형을 입력하세요 : ");
+            String bloodtype = sc.nextLine();
+
+            findId = new Member(age, hobbies, bloodtype);
+            return findId;
+        } else {
+            Member findPw = null;
+            System.out.print("아이디를 입력하세요 : ");
+            String id = sc.nextLine();
+
+            System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
+            int length = sc.nextInt();
+            sc.nextLine();
+            String[] hobbies = new String[length];
+            for (int i = 0; i < hobbies.length; i++) {
+                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
+                String input4 = sc.nextLine();
+                hobbies[i] = input4;
+            }
+            findPw = new Member(id, hobbies);
+            return findPw;
+        }
+    }
 
     }
