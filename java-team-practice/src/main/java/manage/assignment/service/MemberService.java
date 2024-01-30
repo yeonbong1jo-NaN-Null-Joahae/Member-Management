@@ -36,6 +36,7 @@ public class MemberService {
 
         if (selectedMember == null) {
             System.out.println("그런 회원이 없네요 ㅠㅠ");
+            return null;
         } else {
             System.out.println("조회된 회원은: " + selectedMember);
         }
@@ -80,14 +81,6 @@ public class MemberService {
     }
 
 
-    public void find(Member member) {
-        Member result;
-        if (result == 1){
-        } else if(result == 2)
-            System.out.println("회원정보를 찾을 수 없습니다.");
-        }
-    }
-
     public void modifyMember(Member member) {
         int result = mr.modifyMember(member);
         if (result > 0) {
@@ -118,6 +111,30 @@ public class MemberService {
             System.out.println("해당 취미를 가진 회원이 없네요~");
     }
 
-    public void resetPassword() {
+    public void findIdOrResetPw (Member member) {
+        if (member.getId() == null) {
+            findID(member);
+        } else {
+            resetPassword(member);
+        }
+    }
+
+    public void findID(Member member){
+        String iD = mr.findID(member);
+        if(iD != null){
+            System.out.println(mr.findID(member) + " 찾으시는 아이디 입니다.");
+            return;
+        }
+        System.out.println("회원정보 수정에 실패하였습니다.");
+    }
+
+    public void resetPassword(Member member) {
+        Scanner sc = new Scanner(System.in);
+        int result = mr.findPWD(member);
+        if (result == 1) {
+            System.out.println(member.getId() + "님의 비밀번호가 변경되었습니다." );
+        } else if (result == 2){
+            System.out.println("회원정보를 잘못 입력하셨습니다.");
+        }
     }
 }
