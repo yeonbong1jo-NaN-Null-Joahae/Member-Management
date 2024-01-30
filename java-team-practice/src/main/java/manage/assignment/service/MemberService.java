@@ -8,6 +8,11 @@ import java.util.ArrayList;
 /* 설명. 트랜잭션 성공/실패 여부 확인 및 회원 관련 비즈니스 로직 처리하는 클래스 */
 public class MemberService {
 
+    /* 메모. MemberRepository를 private final로 선언하는 이유
+        private final을 사용함으로써 MemberRepository 객체(인스턴스)를 캡술화하고
+        이 클래스 내에서만 접근 가능하도록하여 초기와 이후에 참조가 변경되지 않도록 보장.
+        이는 코드의 견고성과 유지보수성을 향상시키고 Repository 참조에 대한 의도치않은 수정을 방지하기 위한 관행
+     */
     private final MemberRepository mr = new MemberRepository();
 
     public MemberService() {
@@ -87,8 +92,6 @@ public class MemberService {
         }
         System.out.println("회원정보 수정에 실패하였습니다.");
     }
-
-
 
     /* 설명. searchMemberByHobby 메소드 추가 */
     public void searchMemberByHobby(String hobby) {
