@@ -4,6 +4,7 @@ import manage.assignment.aggregate.Member;
 import manage.assignment.repository.MemberRepository;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /* 설명. 트랜잭션 성공/실패 여부 확인 및 회원 관련 비즈니스 로직 처리하는 클래스 */
 public class MemberService {
@@ -19,10 +20,10 @@ public class MemberService {
         /* 설명. 회원이 한명도 없어서 조회 결과가 없더라도 ArrayList객체는 넘어온다. (Empty 상태로) */
         if (!selectedMembers.isEmpty()) {       // 회원이 한명이라도 조회된다면
             System.out.println("===== service까지 잘 반환되어 오나 확인 =====");
-            for(Member m: selectedMembers) {
+            for (Member m : selectedMembers) {
                 System.out.println(m);
             }
-            return ;                            // 이후 코드와 상관 없이 메소드 종료
+            return;                            // 이후 코드와 상관 없이 메소드 종료
         }
         /* 설명. 조건이 맞지 않아(회원이 조회되지 않아) 출력을 하는 구문(위의 조건이 맞으면 실행되지 않음)(feat. else 안 쓰기) */
         System.out.println("슬프게도 우리 사이트는 아직 회원이 없습니다. ㅠㅠ");
@@ -66,17 +67,16 @@ public class MemberService {
     }
 
     /* 설명. 로그인 결과 출력 */
-    public void loginCheck(String id, String pwd){
-        int result = mr.loginCheck(mr.findMember(id),pwd);
-        if(result == 1){
+    public void loginCheck(String id, String pwd) {
+        int result = mr.loginCheck(mr.findMember(id), pwd);
+        if (result == 1) {
             System.out.println("존재하지 않는 아이디입니다.");
         } else if (result == 2) {
             System.out.println("로그인에 성공했습니다.");
-        } else if(result == 3){
+        } else if (result == 3) {
             System.out.println("비밀번호가 틀렸습니다.");
         }
     }
-
 
     public void modifyMember(Member member) {
         int result = mr.modifyMember(member);
@@ -97,16 +97,39 @@ public class MemberService {
 
         ArrayList<Member> sharedHobbyMembers = mr.searchMemberByHobby(hobby);
 
-        if(!sharedHobbyMembers.isEmpty()){
+        if (!sharedHobbyMembers.isEmpty()) {
             System.out.println("============ " + hobby + " 취미를 가진 멤버 목록 ============");
-            for (Member m : sharedHobbyMembers){
+            for (Member m : sharedHobbyMembers) {
                 System.out.println(m);
             }
         } else
             System.out.println("해당 취미를 가진 회원이 없네요~");
     }
 
-    public void resetPassword() {
-        System.out.println("찾으시는 아이디가 없습니다.");
+    public void findIdOrResetPw (Member member) {
+        if (member.getId() == null) {
+            findID(member);
+        } else {
+            resetPassword(member);
+        }
+    }
+
+    public void findID(Member member){
+        String iD = mr.findID(member);
+        if(iD != null){
+            System.out.println(mr.findID(member) + " 찾으시는 아이디 입니다.");
+            return;
+        }
+        System.out.println("회원정보 수정에 실패하였습니다.");
+    }
+
+    public void resetPassword(Member member) {
+        Scanner sc = new Scanner(System.in);
+        int result = mr.findPWD(member);
+        if (result == 1) {
+            System.out.println(member.getId() + "님의 비밀번호가 변경되었습니다." );
+        } else if (result == 2){
+            System.out.println("회원정보를 잘못 입력하셨습니다.");
+        }
     }
 }
