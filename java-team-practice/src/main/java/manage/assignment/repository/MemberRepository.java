@@ -6,6 +6,8 @@ import manage.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공/실패 결과를 반환하는 클래스 */
 public class MemberRepository {
@@ -50,7 +52,7 @@ public class MemberRepository {
                             new FileOutputStream(filePathName)));
 
             /* 설명. 넘어온 회원 수만큼 객체 출력하기 */
-            for (Member m: members) {
+            for (Member m : members) {
                 oos.writeObject(m);
             }
 
@@ -60,7 +62,7 @@ public class MemberRepository {
             throw new RuntimeException(e);
         } finally {
             try {
-                if(oos != null) oos.close();
+                if (oos != null) oos.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -100,8 +102,8 @@ public class MemberRepository {
     }
 
     public Member selectMember(int memNo) {
-        for(Member m: memberList) {
-            if(m.getMemNo() == memNo) return m;
+        for (Member m : memberList) {
+            if (m.getMemNo() == memNo) return m;
         }
         return null;
     }
@@ -160,24 +162,24 @@ public class MemberRepository {
 
 
     /* 설명. id를 통해 멤버를 검색하는 메소드 */
-    public Member findMember(String id){
-        for(Member m: memberList) {
-            if(m.getId().equals(id)) return m;
+    public Member findMember(String id) {
+        for (Member m : memberList) {
+            if (m.getId().equals(id)) return m;
         }
         return null;
     }
 
     /* 설명. case 6.에 추가할 로그인 기능의 로그인 여부(loginCheck)를 확인하는 메소드 */
-    public int loginCheck(Member m, String pwd){
-       if(m == null){
-           return 1;        // ID 없음
-       } else {
-           if(m.getPwd().equals(pwd)){
-               return 2;        // 로그인 성공
-           } else{
-               return 3;        // 비번 틀림
-           }
-       }
+    public int loginCheck(Member m, String pwd) {
+        if (m == null) {
+            return 1;        // ID 없음
+        } else {
+            if (m.getPwd().equals(pwd)) {
+                return 2;        // 로그인 성공
+            } else {
+                return 3;        // 비번 틀림
+            }
+        }
     }
 
     public int modifyMember(Member member) {
@@ -212,6 +214,7 @@ public class MemberRepository {
 
         return 1;
     }
+
     /* 설명. searchMemberByHobby 메소드 추가 */
     public ArrayList<Member> searchMemberByHobby(String hobby) {
         /* 메모
@@ -224,9 +227,9 @@ public class MemberRepository {
 
         ArrayList<Member> sharedHobbyMembers = new ArrayList<>();
 
-        for(Member m : memberList){                     // memberList에 저장된 값 순차 탐색
-            for(String s : m.getHobbies()){             // MemberList에 저장된 member 객체의 취미 배열 순차 탐색
-                if(s.equals(hobby)){       // 사용자가 입력한 취미와 배열의 값이 일치한다면
+        for (Member m : memberList) {                     // memberList에 저장된 값 순차 탐색
+            for (String s : m.getHobbies()) {             // MemberList에 저장된 member 객체의 취미 배열 순차 탐색
+                if (s.equals(hobby)) {       // 사용자가 입력한 취미와 배열의 값이 일치한다면
                     sharedHobbyMembers.add(m);          // 해당 멤버 객체를 sharedHobbyMembers에 저장
                 }
             }

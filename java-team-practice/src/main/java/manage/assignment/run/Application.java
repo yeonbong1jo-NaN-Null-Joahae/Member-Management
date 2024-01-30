@@ -56,61 +56,13 @@ public class Application {
         }
     }
 
-    private static Member findIdOrPw() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("찾으려는 내용이 무엇인가요?");
-        System.out.print("1. 아이디        2. 비밀번호");
-        int input1 = sc.nextInt();
-
-        if (input1 == 1) {
-            Member findId = null;
-            System.out.print("나이를 입력하세요 : ");
-            int age = sc.nextInt();
-            System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
-            int length = sc.nextInt();
-            sc.nextLine();
-            String[] hobbies = new String[length];
-            for (int i = 0; i < hobbies.length; i++) {
-                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
-                String input3 = sc.nextLine();
-                hobbies[i] = input3;
-            }
-
-            System.out.print("혈액형을 입력하세요 : ");
-            String bloodtype = sc.nextLine();
-
-            findId = new Member(age, hobbies, bloodtype);
-            return findId;
-
-        } else {
-            Member findPw = null;
-            System.out.println("아이디를 입력하세요 : ");
-            String id = sc.nextLine();
-            sc.nextLine();
-
-            System.out.println("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상) : ");
-            int length = sc.nextInt();
-            sc.nextLine();
-            String[] hobbies = new String[length];
-            for (int i = 0; i < hobbies.length; i++) {
-                System.out.print((i + 1) + "번째 취미를 입력하세요: ");
-                String input4 = sc.nextLine();
-                hobbies[i] = input4;
-            }
-            findPw = new Member(id, hobbies);
-            return findPw;
-        }
-    }
-
     /* 설명. 같은 취미를 가진 회원 조회를 위해 검색할 취미를 입력받아 반환하는 메소드 */
     private static String chooseHobby() {
         Scanner sc = new Scanner(System.in);
         System.out.print("조회할 취미를 입력하세요: ");
 
-
         return sc.nextLine().trim();
     }
-
 
     /* 설명. 회원 1명 조회를 위해 해당 회원 번호를 입력받아 반환하는 메소드 */
         private static int chooseMemberNo() {
@@ -159,7 +111,7 @@ public class Application {
          *  회원으로부터 회원가입을 위한 정보를 입력받아 Member 타입 객체 하나로 가공 처리할 때 방법이 두 가지가 있다.
          *  1. 생성자 방식(장점: 한줄 코딩 가능, 단점: 따로 생성자 추가)
          *  2. setter 방식(장점: 초기화할 개수 수정 용이, 단점: 코딩 줄 수 늘어날 수 있음)
-         * */
+        * */
         newInfo.setBloodType(bt);
 
         return newInfo;
@@ -167,7 +119,7 @@ public class Application {
 
     /* 설명.
      *  회원번호 입력받아 회원정보 수정하는 기능
-     * */
+    * */
     private static Member modifyInfo(int memNo) {
 
         /* 설명. 상세 알고리즘
@@ -175,7 +127,7 @@ public class Application {
          *  2. 사용자에게 5가지의 필드 중 어떤 것을 바꾸고 싶은지 물어보고 스페이스로 구분하여 입력하도록 한다 (예시: 2 4 5)
          *  3. 입력하면 newInfo 에서 해당 필드를 setter 를 이용하여 수정한다
          *  4. newInfo 를 반환하여 서비스 단으로 넘긴다.
-         * */
+        * */
 
         // =================================================
         // 1. 사용자가 입력한 회원번호에 해당하는 회원의 정보를 가져온다
@@ -305,6 +257,7 @@ public class Application {
             Member findPw = null;
             System.out.print("아이디를 입력하세요 : ");
             String id = sc.nextLine();
+
             System.out.print("가지고 있는 취미 개수를 입력하세요(숫자로 1 이상): ");
             int length = sc.nextInt();
             sc.nextLine();
