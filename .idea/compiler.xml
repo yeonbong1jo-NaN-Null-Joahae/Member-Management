@@ -5,6 +5,7 @@
       <module name="java-team-practice" target="17" />
       <module name="java-team-practice.main" target="17" />
       <module name="java-team-practice.test" target="17" />
+      <module name="org.example.java-team-practice" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

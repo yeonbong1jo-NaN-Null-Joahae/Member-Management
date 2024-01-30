@@ -64,6 +64,7 @@ public class Application {
         return sc.nextLine().trim();
     }
 
+
     /* 설명. 회원 1명 조회를 위해 해당 회원 번호를 입력받아 반환하는 메소드 */
 
     private static int chooseMemberNo() {
