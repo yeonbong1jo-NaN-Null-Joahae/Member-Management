@@ -93,6 +93,14 @@ public class Member implements Serializable {       // 객체 입출력을 위�
         return bloodType;
     }
 
+    public void setFieldsNull() {
+        this.setId(null);
+        this.setPwd(null);
+        this.setAge(0);
+        this.setHobbies(null);
+        this.setBloodType(null);
+    }
+
     @Override
     public String toString() {
         return "Member{" +

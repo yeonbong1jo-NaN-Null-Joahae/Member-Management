@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$/../../java-team-practice">
       <excludeFolder url="file://$MODULE_DIR$/../../java-team-practice/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../java-team-practice/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../java-team-practice/out" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
