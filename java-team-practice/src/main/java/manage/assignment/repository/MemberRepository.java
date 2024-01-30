@@ -22,9 +22,9 @@ public class MemberRepository {
         File file = new File("java-team-practice/src/main/java/mane/assignment/db/memberDB.dat");
         if (!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
-            members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
-            members.add(new Member(2, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
-            members.add(new Member(3, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
+            members.add(new Member(nextNum++, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
+            members.add(new Member(nextNum++, "user02", "pass02", 10, new String[]{"게임", "영화시청"}, BloodType.B));
+            members.add(new Member(nextNum++, "user03", "pass03", 15, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
             saveMembers(members);
         }
 
