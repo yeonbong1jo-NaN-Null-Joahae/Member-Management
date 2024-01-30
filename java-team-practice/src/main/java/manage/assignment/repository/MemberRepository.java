@@ -266,10 +266,8 @@ public class MemberRepository {
                 saveMembers(memberList);
 
                 return 1;
-            } else {
-                return 2;
             }
         }
-        return 0;
+        return 2;
     }
 }
