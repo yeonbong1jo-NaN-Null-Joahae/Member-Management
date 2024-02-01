@@ -21,6 +21,9 @@ public class MemberService {
         if (!selectedMembers.isEmpty()) {       // 회원이 한명이라도 조회된다면
             System.out.println("===== service까지 잘 반환되어 오나 확인 =====");
             for (Member m : selectedMembers) {
+                if (m.getId() == null) {
+                    continue;
+                }
                 System.out.println(m);
             }
             return;                            // 이후 코드와 상관 없이 메소드 종료

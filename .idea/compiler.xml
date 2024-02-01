@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="java-team-practice" target="17" />
-      <module name="java-team-practice.main" target="17" />
-      <module name="java-team-practice.test" target="17" />
+    <bytecodeTargetLevel target="17">
       <module name="org.example.java-team-practice" target="17" />
     </bytecodeTargetLevel>
   </component>
